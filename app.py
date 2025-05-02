@@ -3,6 +3,8 @@ from dash import dcc, html, Input, Output
 import pandas as pd
 import plotly.express as px
 import dash_bootstrap_components as dbc
+import os
+
 
 
 df = pd.read_csv("GTD_Dataset.csv")
@@ -166,4 +168,5 @@ def update_dashboard(regions, countries, attacks, years):
 
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    port = int(os.environ.get("PORT", 8050))
+    app.run_server(host='0.0.0.0', port=port, debug=False)
